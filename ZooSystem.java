@@ -1,4 +1,4 @@
-abstract class Animal{ 
+abstract class Animal { 
 
 	String name;
 	int weight;
@@ -40,6 +40,10 @@ class Mammal extends Animal {
 	String reproduce() {
 		return "vivaparous";
 	}
+
+	String eat() {
+		return "food";
+	}
 	
 //	abstract String eat();
 
@@ -58,11 +62,14 @@ class Bird extends Animal {
 		super(name, weight, food, blood);
 	}
 
+	// override abstract parent method	
 	String reproduce() {
 		return "ovoviviparous";
 	}
 
-//	abstract String eat();
+	String eat() {
+		return "food";
+	}
 
 	boolean getFly() { return this.fly;	}
 	void setFly(boolean fly) { this.fly = fly; }
@@ -80,10 +87,11 @@ class Reptile extends Animal {
 	Reptile(String name, int weight, String food, String blood) {
 		super(name, weight, food, blood);
 	}
-/*
-	abstract String reproduce();
-	abstract String eat();
-*/
+
+	String reproduce() { return "kids"; }
+	String eat() { return "food"; }
+
+
 	boolean getScales() { return this.hasScales; }
 	void setScales(boolean scales) { this.hasScales = scales; }
 
@@ -91,6 +99,8 @@ class Reptile extends Animal {
 	void setLegs(boolean legs) { this.hasLegs = legs; }
 
 }
+
+//class Giraffe extends Animal
 
 public class ZooSystem {
 
