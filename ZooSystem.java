@@ -110,6 +110,9 @@ final class Giraffe extends Mammal {
 	void setNumSpots(int numSpots){
 		this.numSpots = numSpots;
 	}
+	public String toString(){
+		return this.name + " the " + this.getClass().getSimpleName();
+	}
 }
 final class PrarieDog extends Mammal {
 	String tailColor;
@@ -129,6 +132,10 @@ final class PrarieDog extends Mammal {
 	void setTailColor(String tailColor) {this.tailColor = tailColor; }
 	Boolean getBurrow() {return this.burrow;}
 	void setBurrow(Boolean burrow){this.burrow = burrow;}
+	public String toString(){
+		return this.name + " the " + this.getClass().getSimpleName();
+	}
+
 } 
 
 final class Penguin extends Bird{
@@ -149,6 +156,9 @@ final class Penguin extends Bird{
 	void setMaxDive(double maxDive){this.maxDive = maxDive;}
 	Boolean getBellySlide(){return this.bellySlide;}
 	void setBellySlide(Boolean bellySlide){this.bellySlide = bellySlide;}
+	public String toString(){
+		return this.name + " the " + this.getClass().getSimpleName();
+	}
 }
 final class Toucan extends Bird{
 	double beakLength;
@@ -169,6 +179,9 @@ final class Toucan extends Bird{
 	void setBeakLength(double beakLength){this.beakLength = beakLength;}
 	double getDecibels(){return this.decibels;}
 	void setDecibels(double decibels){this.decibels = decibels;}
+	public String toString(){
+		return this.name + " the " + this.getClass().getSimpleName();
+	}
 }
 
 final class Snake extends Reptile{
@@ -189,6 +202,9 @@ final class Snake extends Reptile{
 	void setVenom(boolean venom){this.venom = venom;}
 	double getLength(){return this.length;}
 	void setLength(double length){this.length = length;}
+	public String toString(){
+		return this.name + " the " + this.getClass().getSimpleName();
+	}
 }
 final class Turtle extends Reptile{
 	double circumference;
@@ -206,6 +222,9 @@ final class Turtle extends Reptile{
 	void setCircumference(double circumference){this.circumference = circumference;}
 	boolean isAquatic(){return this.isAquatic;}
 	void isAquatic(boolean isAquatic){this.isAquatic = isAquatic;}
+	public String toString(){
+		return this.name + " the " + this.getClass().getSimpleName();
+	}
 }
 
 public class ZooSystem {
@@ -213,7 +232,7 @@ public class ZooSystem {
 	int numAnimals[]={1,1,1,1,1,1};
 	public void setupAnimals(){
 		alist = new Animal[6];
-		alist[0] = new Giraffe("Fred", 20, "acacia", 11.7, 24);
+		alist[0] = new Giraffe("Teddy", 20, "acacia", 11.7, 24);
 		alist[1] = new PrarieDog("Charlie", 15, "grass seeds", "black", true);
 		alist[2] = new Penguin("Kowalski", 25, "Cheese Puffs", 20.6, true);
 		alist[3] = new Toucan("Tookie", 8, "berries", 25.6, 40.6);
@@ -240,8 +259,9 @@ public class ZooSystem {
 	void printVerboseList(){
         int numAnimals = alist.length;
 		System.out.println("   Name"+"\t\t\t"+"Species");
+		//NOTE: PrarieDog is too long a species name (and names must be at least 5 characters long)
         for(int i = 0; i < numAnimals; i++){
-            System.out.println((i+1) + ": " + alist[i].getName() + "\t\t" + alist[i].getClass().getSimpleName() + "\t\t"); // toString() needs to be defined for this to work correctly
+            System.out.println((i+1) + ": " + alist[i].getName() + "\t\t" + alist[i].getClass().getSimpleName() + "\t\t" + alist[i]); // toString() needs to be defined for this to work correctly
         } // end for
 
 	} // end of printVerboseList
