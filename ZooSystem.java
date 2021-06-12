@@ -1,3 +1,4 @@
+import java.util.Scanner;
 abstract class Animal{ 
 
 	String name;
@@ -111,7 +112,7 @@ final class Giraffe extends Mammal {
 		this.numSpots = numSpots;
 	}
 	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName();
+		return this.name + " the " + this.getClass().getSimpleName() + "likes to eat " + this.faveFood + ", has a " + this.neckLength + " foot neck, and has " + this.numSpots + " spots.";
 	}
 }
 final class PrarieDog extends Mammal {
@@ -124,16 +125,12 @@ final class PrarieDog extends Mammal {
 		this.burrow = burrow;
 	}
 
-	String eat(){
-		return "flowering plants";
-	}
-
 	String getTailColor(){ return this.tailColor; }
 	void setTailColor(String tailColor) {this.tailColor = tailColor; }
 	Boolean getBurrow() {return this.burrow;}
 	void setBurrow(Boolean burrow){this.burrow = burrow;}
 	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName();
+		return this.name + " the " + this.getClass().getSimpleName() + " likes " + this.faveFood + ", has a " + this.tailColor + " colored tail, and ";
 	}
 
 } 
@@ -239,8 +236,6 @@ public class ZooSystem {
 		alist[4] = new Snake("Salazar", 89, "mice", false, 20.5);
 		alist[5] = new Turtle("Donatello", 206, "Cabbage", 50.7, false);
 		System.out.println("\n");
-		printSummaryView();
-		printVerboseList();
 	}
 	
 	void printSummaryView(){
@@ -250,11 +245,15 @@ public class ZooSystem {
 			System.out.println(numAnimals[i]+" " + alist[i].getClass().getSimpleName()+"(s)");
 		}
 	}
-	int addAnimal(Animal a){return 1;}
+	void addAnimal(){
+		System.out.println("This is addAnimal");
+	}
 
-  	int deleteAnimal(int index){return 1;}
+  	void deleteAnimal(){
+		System.out.println("This is deleteAnimal");
+	}
 
-  	void displayAnimals(String name) {}
+  	void displayAnimal() {System.out.println("This is displayAnimals");}
 
 	void printVerboseList(){
         int numAnimals = alist.length;
@@ -264,16 +263,50 @@ public class ZooSystem {
             System.out.println((i+1) + ": " + alist[i].getName() + "\t\t" + alist[i].getClass().getSimpleName() + "\t\t" + alist[i]); // toString() needs to be defined for this to work correctly
         } // end for
 
-	} // end of printVerboseList
+	}
 
 
-  static String printInteractiveOptions(){return "placeholder";}
+    static int printInteractiveOptions(Scanner input){
+		System.out.println("Options:\n Add animal(add)\n Delete animal(delete)\n Display animal(display)\n Quit program (quit) \n");
+		input.useDelimiter(System.lineSeparator());
+		String userDecision = input.next();
+		if(userDecision.equals("add")){
+			return 0;
+		}else if(userDecision.equals("delete")){
+			return 1;
+		}else if(userDecision.equals("display")){
+			return 2;
+		}else if(userDecision.equals("quit")){
+			return 3;
+		}else{
+			System.out.println("Invalid output. Please try again");
+			return 4;
+		}
+	}
 
 
 	public static void main(String[] args) {
+		boolean runProgram = true;
+		Scanner input = new Scanner(System.in);
+		int output;
 		ZooSystem newZoo = new ZooSystem();
 		newZoo.setupAnimals();
-
+		while(runProgram){
+			newZoo.printSummaryView();
+			System.out.println("\n");
+			newZoo.printVerboseList();
+			System.out.println("\n");
+			output = printInteractiveOptions(input);
+			if(output == 0){
+				newZoo.addAnimal();
+			}else if (output == 1){
+				newZoo.deleteAnimal();
+			}else if (output == 2){
+				newZoo.displayAnimal();
+			}else if (output == 3){
+				runProgram = false;
+				input.close();
+			}
+		}
 	}
-
 }
