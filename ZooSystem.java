@@ -135,7 +135,7 @@ final class Giraffe extends Mammal {
 		this.numSpots = numSpots;
 	}
 	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName() + "likes to eat " + this.faveFood + ", has a " + this.neckLength + " foot neck, and has " + this.numSpots + " spots.";
+		return this.name + " the " + this.getClass().getSimpleName() + " has a " + this.neckLength + " foot long neck.";
 	}
 }
 final class PrarieDog extends Mammal {
@@ -159,7 +159,7 @@ final class PrarieDog extends Mammal {
 	Boolean getBurrow() {return this.burrow;}
 	void setBurrow(Boolean burrow){this.burrow = burrow;}
 	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName() + " likes " + this.faveFood + ", has a " + this.tailColor + " colored tail, and ";
+		return this.name + " the " + this.getClass().getSimpleName() + " has a " + this.tailColor + " colored tail.";
 	}
 
 } 
@@ -186,7 +186,7 @@ final class Penguin extends Bird{
 	Boolean getBellySlide(){return this.bellySlide;}
 	void setBellySlide(Boolean bellySlide){this.bellySlide = bellySlide;}
 	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName();
+		return this.name + " the " + this.getClass().getSimpleName() + " can dive up to " + this.maxDive + " feet.";
 	}
 }
 final class Toucan extends Bird{
@@ -214,7 +214,7 @@ final class Toucan extends Bird{
 	double getDecibels(){return this.decibels;}
 	void setDecibels(double decibels){this.decibels = decibels;}
 	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName();
+		return this.name + " the " + this.getClass().getSimpleName() + " has a beak " + this.beakLength + " inches long.";
 	}
 }
 
@@ -242,7 +242,7 @@ final class Snake extends Reptile{
 	double getLength(){return this.length;}
 	void setLength(double length){this.length = length;}
 	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName();
+		return this.name + " the " + this.getClass().getSimpleName() + " is " + this.length + " feet long.";
 	}
 }
 final class Turtle extends Reptile{
@@ -267,7 +267,7 @@ final class Turtle extends Reptile{
 	boolean isAquatic(){return this.isAquatic;}
 	void isAquatic(boolean isAquatic){this.isAquatic = isAquatic;}
 	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName();
+		return this.name + " the " + this.getClass().getSimpleName() + " has a shell that is " + this.circumference + " inches in circumference.";
 	}
 }
 
@@ -280,7 +280,7 @@ public class ZooSystem {
 		alist[0] = new Giraffe("Teddy", 20, "acacia", 11.7, 24);
 		alist[1] = new PrarieDog("Charlie", 15, "grass seeds", "black", true);
 		alist[2] = new Penguin("Kowalski", 25, "Cheese Puffs", 20.6, true);
-		alist[3] = new Toucan("Sam", 8, "Froot Loops", 25.6, 40.6);
+		alist[3] = new Toucan("Samuel", 8, "Froot Loops", 25.6, 40.6);
 		alist[4] = new Snake("Salazar", 89, "mice", false, 20.5);
 		alist[5] = new Turtle("Donatello", 206, "Pizza", 50.7, false);
 		System.out.println("\n");
@@ -293,15 +293,15 @@ public class ZooSystem {
 		int totAnimals = alist.length;
 		System.out.println("There are " + totAnimals + " animals in the zoo.");
 		for(int i = 0; i < animalTypes.length; i++){
-			System.out.println(numAnimals[i]+" " + alist[i].getClass().getSimpleName()+"(s)");
+			System.out.println(numAnimals[i]+" " + animalTypes[i]+"(s)");
 		}
 	}
 	void addAnimal(Scanner input){
-		System.out.println("What type of animal would you like to add? (format: species name faveFood)");
+		System.out.println("What type of animal would you like to add? (format: species name specialTrait)");
 		String userDecision = input.next();
 		String[] words = userDecision.split("\\s+");
 		if(words.length != 3){
-			System.out.println("Too few/many arguments.");
+			System.out.println("\nToo few/many arguments.");
 			return;
 		}
 		//Need to find an easier way to turn the user's first word (species) into call for constructor to reduce eyesore
@@ -326,20 +326,48 @@ public class ZooSystem {
 				return;
 			}
 		}
-		System.out.println("Sorry; such a species isn't supported at the zoo");
+		System.out.println("\nSorry; such a species isn't supported at the zoo");
 	}
 
 	static void displayAnimalInformation(Animal userCreatedAnimal){
-		System.out.println("Name: "+ userCreatedAnimal.getName());
+		System.out.println("\nName: "+ userCreatedAnimal.getName());
 		System.out.println("Species: " + userCreatedAnimal.getClass().getSimpleName());
 		System.out.println("Reproductive Type: "+ userCreatedAnimal.reproduce());
 		System.out.println("Eating Habits: " + userCreatedAnimal.eat() + "\n");
 	}
 
   	void deleteAnimal(Scanner input){
-		System.out.println("This is deleteAnimal");
+		System.out.println("What is the name of animal would you like to wipe from existence?");
+		String userDecision = input.next();
+		//Need to find an easier way to turn the user's first word (species) into call for constructor to reduce eyesore
+		//loop through the list to find the animal with name match
+		for(int i = 0; i < alist.length; i++){
+			if((userDecision.toLowerCase()).equals(alist[i].getName().toLowerCase())){
+				//loop through animal types to decrement the number of that species
+				for(int j = 0; j < animalTypes.length; j++){
+					if(alist[i].getClass().getSimpleName().toLowerCase().equals(animalTypes[j])){
+						numAnimals[j] -= 1;
+					}
+				}
+				//Delete the animal from the array
+				Animal[] tempArray = new Animal[alist.length - 1];
+				for (int k = 0, m = 0; k < alist.length; k++){
+					if (k == i){
+						continue;
+					}
+					tempArray[m++] = alist[k];
+				}
+				alist = tempArray;
+				System.out.println(userDecision + " disappeared from the zoo with a poof!");
+				return;
+			}
+		}
+		System.out.println("Sorry, "+ userDecision + " isn't in the zoo.");
 	}
-
+	//Inpiration for code taken from https://www.geeksforgeeks.org/remove-an-element-at-specific-index-from-an-array-in-java/
+	void removeElement(Animal[]tempArray){
+		
+	}
   	void displayAnimal(Scanner input) {
 		int numAnimals = alist.length;
 		System.out.println("What animal would you like to display information about?");
@@ -402,6 +430,8 @@ public class ZooSystem {
 			}
 			System.out.println("\n");
 			newZoo.printSummaryView();
+			System.out.println("\n");
+			newZoo.printVerboseList();
 			System.out.println("\n");
 		}
 	}
