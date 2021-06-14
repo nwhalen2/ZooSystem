@@ -1,284 +1,14 @@
 import java.util.Scanner;
 import java.util.Arrays;
-abstract class Animal{ 
-
-	String name;
-	int weight;
-	String foodType;
-	String bloodType;
-	String faveFood;
-	String foodTypeArray[] = {"carnivore","herbivore","omnivore"};
-	// constructor
-	Animal(String name, int weight, String faveFood) {
-		this.name = name;
-		this.weight = weight;
-		this.faveFood = faveFood;
-	}
-
-	Animal(String name){
-		this.name = name;
-	}
-	abstract String eat();
-	abstract String reproduce();
-
-	String getName() { return this.name; }
-	void setName(String name) { this.name = name; }
-
-	int getWeight() { return this.weight; }
-	void setWeight(int weight) { this.weight = weight; }
-
-	String getFoodType() { return this.foodType; }
-	void setFoodType(String food) { this.foodType = food; } 
-
-	String getBloodType() { return this.bloodType; }
-	void setBloodType(String blood) { this.bloodType = blood; }	
-
-}
-
-abstract class Mammal extends Animal {
-	final String bloodType = "warm-blooded";
-	final String foodType = foodTypeArray[1];
-	Mammal(String name, int weight, String faveFood) {
-		super(name, weight, faveFood);
-	}
-
-	Mammal(String name){
-		super(name);
-	}
-
-	final String reproduce() {
-		return "vivaparous";
-	}
-
-	String complexBrain() {
-		return "has a complex brain";
-	}
-
-}
-
-abstract class Bird extends Animal {
-	final String bloodType = "warm-blooded";
-	boolean fly;
-	int wingSpan;
-
-	Bird(String name, int weight, String faveFood) {
-		super(name, weight, faveFood);
-	}
-
-	Bird(String name){
-		super(name);
-	}
-
-
-	final String reproduce() {
-		return "ovoviviparous";
-	}
-
-	boolean getFly() { return this.fly;	}
-	void setFly(boolean fly) { this.fly = fly; }
-
-	int getWingSpan() { return this.wingSpan; }
-	void setWingSpan(int wing) { this.wingSpan = wing; }
-
-}
-
-abstract class Reptile extends Animal {
-	final String bloodType = "cold-blooded";
-	boolean hasScales;
-	boolean hasLegs;
-	
-	Reptile(String name, int weight, String faveFood) {
-		super(name, weight, faveFood);
-	}
-
-	Reptile(String name){
-		super(name);
-	}
-	final String reproduce(){
-		return "eggs";
-	};
-
-	boolean getScales() { return this.hasScales; }
-	void setScales(boolean scales) { this.hasScales = scales; }
-
-	boolean getLegs() { return this.hasLegs; }
-	void setLegs(boolean legs) { this.hasLegs = legs; }
-
-}
-
-final class Giraffe extends Mammal {
-	double neckLength;
-	int numSpots;
-
-	Giraffe(String name, int weight, String faveFood, double neckLength, int numSpots){
-		super(name, weight, faveFood);
-		this.neckLength = neckLength;
-		this.numSpots = numSpots;
-	}
-	Giraffe(String name, double neckLength){
-		super(name);
-		this.neckLength = neckLength;
-	}
-	String eat(){
-		return "acacia leaves";
-	}
-	double getNeckLength(){
-		return this.neckLength;
-	}
-	void setNeckLength(double neckLength){
-		this.neckLength = neckLength;
-	}
-	int getNumSpots(){
-		return this.numSpots;
-	}
-	void setNumSpots(int numSpots){
-		this.numSpots = numSpots;
-	}
-	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName() + " has a " + this.neckLength + " foot long neck.";
-	}
-}
-final class PrarieDog extends Mammal {
-	String tailColor;
-	Boolean burrow;
-
-	PrarieDog(String name, int weight, String faveFood, String tailColor, Boolean burrow) {
-		super(name, weight, faveFood);
-		this.tailColor = tailColor;
-		this.burrow = burrow;
-	}
-
-	PrarieDog(String name, String tailColor){
-		super(name);
-		this.tailColor = tailColor;
-	}
-
-	String eat(){return "prarie grass seeds";}
-	String getTailColor(){ return this.tailColor; }
-	void setTailColor(String tailColor) {this.tailColor = tailColor; }
-	Boolean getBurrow() {return this.burrow;}
-	void setBurrow(Boolean burrow){this.burrow = burrow;}
-	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName() + " has a " + this.tailColor + " colored tail.";
-	}
-
-} 
-
-final class Penguin extends Bird{
-	final String foodType = foodTypeArray[0];
-	double maxDive;
-	Boolean bellySlide;
-
-	Penguin(String name, int weight, String faveFood, double maxDive, Boolean bellySlide) {
-		super(name, weight, faveFood);
-		this.maxDive = maxDive;
-		this.bellySlide = bellySlide;
-	}
-	Penguin(String name, double maxDive){
-		super(name);
-		this.maxDive = maxDive;
-	}
-	String eat(){
-		return "fish";
-	}
-	double getMaxDive(){return this.maxDive;}
-	void setMaxDive(double maxDive){this.maxDive = maxDive;}
-	Boolean getBellySlide(){return this.bellySlide;}
-	void setBellySlide(Boolean bellySlide){this.bellySlide = bellySlide;}
-	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName() + " can dive up to " + this.maxDive + " feet.";
-	}
-}
-final class Toucan extends Bird{
-	double beakLength;
-	double decibels;
-	String foodType = foodTypeArray[1];
-
-	Toucan(String name, int weight, String faveFood, double beakLength, double decibels) {
-		super(name, weight, faveFood);
-		this.beakLength = beakLength;
-		this.decibels = decibels;
-	}
-
-	Toucan(String name, double beakLength){
-		super(name);
-		this.beakLength = beakLength;
-	}
-
-	String eat(){
-		return "fruits and berries";
-	}
-
-	double getBeakLength(){return this.beakLength;}
-	void setBeakLength(double beakLength){this.beakLength = beakLength;}
-	double getDecibels(){return this.decibels;}
-	void setDecibels(double decibels){this.decibels = decibels;}
-	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName() + " has a beak " + this.beakLength + " inches long.";
-	}
-}
-
-final class Snake extends Reptile{
-	boolean venom;
-	double length;
-	final String foodType = foodTypeArray[0];
-
-	Snake(String name, int weight, String faveFood, boolean venom, double length) {
-		super(name, weight, faveFood);
-		this.length = length;
-		this.venom = venom;
-	}
-
-	Snake(String name, double length){
-		super(name);
-		this.length = length;
-	}
-	String eat(){
-		return "mice";
-	}
-
-	boolean getVenom(){return this.venom;}
-	void setVenom(boolean venom){this.venom = venom;}
-	double getLength(){return this.length;}
-	void setLength(double length){this.length = length;}
-	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName() + " is " + this.length + " feet long.";
-	}
-}
-final class Turtle extends Reptile{
-	double circumference;
-	boolean isAquatic;
-	final String foodType = foodTypeArray[2];
-	Turtle(String name, int weight, String faveFood, double circumference, boolean isAquatic) {
-		super(name, weight, faveFood);
-		this.circumference = circumference;
-		this.isAquatic = isAquatic;
-	}
-
-	Turtle(String name, double circumference){
-		super(name);
-		this.circumference = circumference;
-	}
-	String eat(){
-		return "lettuce";
-	}
-	double getCircumference(){return this.circumference;}
-	void setCircumference(double circumference){this.circumference = circumference;}
-	boolean isAquatic(){return this.isAquatic;}
-	void isAquatic(boolean isAquatic){this.isAquatic = isAquatic;}
-	public String toString(){
-		return this.name + " the " + this.getClass().getSimpleName() + " has a shell that is " + this.circumference + " inches in circumference.";
-	}
-}
 
 public class ZooSystem {
 	Animal alist[];
 	int numAnimals[]={1,1,1,1,1,1};
-	String animalTypes[] = {"giraffe", "prariedog", "penguin", "toucan", "snake", "turtle"};
+	String animalTypes[] = {"giraffe", "prairiedog", "penguin", "toucan", "snake", "turtle"};
 	public void setupAnimals(){
 		alist = new Animal[6];
 		alist[0] = new Giraffe("Teddy", 20, "acacia", 11.7, 24);
-		alist[1] = new PrarieDog("Charlie", 15, "grass seeds", "black", true);
+		alist[1] = new PrairieDog("Charlie", 15, "grass seeds", "black", true);
 		alist[2] = new Penguin("Kowalski", 25, "Cheese Puffs", 20.6, true);
 		alist[3] = new Toucan("Samuel", 8, "Froot Loops", 25.6, 40.6);
 		alist[4] = new Snake("Salazar", 89, "mice", false, 20.5);
@@ -312,7 +42,7 @@ public class ZooSystem {
       			if(words[0].toLowerCase().equals(animalTypes[0])){
 					alist[alist.length-1] = new Giraffe(words[1], Double.parseDouble(words[2]));
 				}else if(words[0].toLowerCase().equals(animalTypes[1])){
-					alist[alist.length-1] = new PrarieDog(words[1], words[2]);
+					alist[alist.length-1] = new PrairieDog(words[1], words[2]);
 				}else if(words[0].toLowerCase().equals(animalTypes[2])){
 					alist[alist.length-1] = new Penguin(words[1], Double.parseDouble(words[2]));
 				}else if(words[0].toLowerCase().equals(animalTypes[3])){
@@ -384,7 +114,7 @@ public class ZooSystem {
 	void printVerboseList(){
         int numAnimals = alist.length;
 		System.out.println("   Name"+"\t\t\t"+"Species");
-		//NOTE: PrarieDog is too long a species name (and names must be at least 5 characters long)
+		//NOTE: PrairieDog is too long a species name (and names must be at least 5 characters long)
         for(int i = 0; i < numAnimals; i++){
             System.out.println((i+1) + ": " + alist[i].getName() + "\t\t" + alist[i].getClass().getSimpleName() + "\t\t" + alist[i]); // toString() needs to be defined for this to work correctly
         } // end for
