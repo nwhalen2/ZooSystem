@@ -11,7 +11,7 @@ public abstract class Mammal extends Animal {
 	}
 
 	final String reproduce() {
-		return "vivaparous";
+		return "viviparous";
 	}
 
 }

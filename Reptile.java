@@ -11,7 +11,7 @@ public abstract class Reptile extends Animal {
 		super(name);
 	}
 	final String reproduce(){
-		return "eggs";
+		return "ovoviviparous";
 	};
 
 	boolean getScales() { return this.hasScales; }
