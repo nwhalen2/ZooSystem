@@ -105,6 +105,7 @@ public class ZooSystem {
 		for(int i = 0; i < numAnimals; i++){
 			if(userDecision.equals(alist[i].getName())){
 				System.out.println("\n"+ alist[i]);
+				displayAnimalInformation(alist[i]);
 				return;
 			}
 		}
