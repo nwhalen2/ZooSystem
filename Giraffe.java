@@ -11,7 +11,7 @@ final class Giraffe extends Mammal {
 		super(name);
 		this.neckLength = neckLength;
 	}
-	String eat(){
+	final String eat(){
 		return "acacia leaves";
 	}
 	double getNeckLength(){
