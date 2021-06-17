@@ -14,7 +14,7 @@ public final class Toucan extends Bird{
 		this.beakLength = beakLength;
 	}
 
-	String eat(){
+	final String eat(){
 		return "fruits and berries";
 	}
 
