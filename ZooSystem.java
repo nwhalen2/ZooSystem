@@ -28,6 +28,10 @@ public class ZooSystem {
 	}
 	void addAnimal(Scanner input){
 		System.out.println("What type of animal would you like to add? (format: species name specialTrait)");
+		System.out.println("Special Traits: ");
+		System.out.println("Giraffe: length of neck (feet)\t Prairie Dog: color of tail");
+		System.out.println("Penguin: max dive depth (feet)\t Toucan: length of beak (inches)");
+		System.out.println("Snake: body length (feet)\t Turtle: circumference of shell (inches)");
 		String userDecision = input.next();
 		String[] words = userDecision.split("\\s+");
 		if(words.length != 3){
