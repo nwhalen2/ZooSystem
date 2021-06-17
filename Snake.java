@@ -13,7 +13,7 @@ public final class Snake extends Reptile{
 		super(name);
 		this.length = length;
 	}
-	String eat(){
+	final String eat(){
 		return "mice";
 	}
 

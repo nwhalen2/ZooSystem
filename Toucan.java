@@ -1,7 +1,7 @@
 public final class Toucan extends Bird{
 	double beakLength;
 	double decibels;
-	String foodType = foodTypeArray[1];
+	final String foodType = foodTypeArray[1];
 
 	Toucan(String name, int weight, String faveFood, double beakLength, double decibels) {
 		super(name, weight, faveFood);

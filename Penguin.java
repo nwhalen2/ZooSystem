@@ -12,7 +12,7 @@ public final class Penguin extends Bird{
 		super(name);
 		this.maxDive = maxDive;
 	}
-	String eat(){
+	final String eat(){
 		return "fish";
 	}
 	double getMaxDive(){return this.maxDive;}

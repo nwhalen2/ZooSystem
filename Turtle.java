@@ -12,7 +12,7 @@ public final class Turtle extends Reptile{
 		super(name);
 		this.circumference = circumference;
 	}
-	String eat(){
+	final String eat(){
 		return "lettuce";
 	}
 	double getCircumference(){return this.circumference;}

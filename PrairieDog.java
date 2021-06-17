@@ -13,7 +13,7 @@ public final class PrairieDog extends Mammal {
 		this.tailColor = tailColor;
 	}
 
-	String eat(){return "prairie grass seeds";}
+	final String eat(){return "prairie grass seeds";}
 	String getTailColor(){ return this.tailColor; }
 	void setTailColor(String tailColor) {this.tailColor = tailColor; }
 	Boolean getBurrow() {return this.burrow;}
