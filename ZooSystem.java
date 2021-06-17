@@ -94,10 +94,6 @@ public class ZooSystem {
 		}
 		System.out.println("Sorry, "+ userDecision + " isn't in the zoo.");
 	}
-	//Inpiration for code taken from https://www.geeksforgeeks.org/remove-an-element-at-specific-index-from-an-array-in-java/
-	void removeElement(Animal[]tempArray){
-		
-	}
   	void displayAnimal(Scanner input) {
 		int numAnimals = alist.length;
 		System.out.println("What animal would you like to display information about?");
